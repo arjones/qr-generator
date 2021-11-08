@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+    <title>QR Generator</title>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <h1 class="title">QR Generator</h1>
+        <h2 class="subtitle">An example of a simple QR Generator using <a href="https://fastapi.tiangolo.com/">FastAPI</a> and hosted on <a href="https://www.deta.sh/">Deta Hosting</a> </h2>
+
+        <div class="columns">
+            <div class="column is-three-quarters">
+                <!-- form with url -->
+                <form action="/qr" method="post">
+                    <div class="field">
+                        <div class="control">
+                            <label class="label">URL
+                                <input class="input" type="text" name="url" placeholder="{{url}}"
+                                       value="{{url}}">
+                            </label>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button class="button is-primary is-large">Generate</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="column is-one-quarter">
+                <!-- qr code -->
+                {% if qr_data %}
+                <img src="data:image/png;base64,{{qr_data}}" alt="qr code for {{url}}"
+                     class="animate__animated animate__zoomIn">
+                {% else %}
+                <img src="/static/qr-placeholder.png" alt="qr code for {{url}}">
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</section>
+<footer class="footer">
+    <div class="content has-text-centered">
+      <p>
+        <strong>QR Generator</strong> by <a href="https://twitter.com/arjones">@arjones</a>. The source code is available at 
+        <a href="https://github.com/arjones/qr-generator">github.com/arjones/qr-generator</a>.
+      </p>
+    </div>
+  </footer>
+</body>
+</html>
+
