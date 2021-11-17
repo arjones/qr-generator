@@ -9,7 +9,7 @@ app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-DEFAULT_URL = "https://qr-gen.arjones.net/"
+DEFAULT_URL = "https://arjon.es/"
 
 
 @app.get("/", response_class=HTMLResponse)
